@@ -11,14 +11,16 @@ itemList.addEventListener('click', editItem);
 function addItem(e){
     e.preventDefault();
 //creating a new element 
-var newItem2 = document.getElementById('descriptionBox').value;
-var newItem1 = document.getElementById('expenseAmount').value;
-var newItem3 = document.getElementById('category').value;
+var obj ={
+ descriptionBox : document.getElementById('descriptionBox').value,
+  expenseAmount : document.getElementById('expenseAmount').value,
+ category : document.getElementById('category').value
+}
 var li = document.createElement('li');
 li.className = 'list';
 
 // Adding text node with input value
-li.appendChild(document.createTextNode(`${newItem1} - ${newItem2} - ${newItem3}`));
+li.appendChild(document.createTextNode(`${expenseAmount.value} - ${descriptionBox.value} - ${category.value}`));
 
 //Add delete button
 var deleteBtn = document.createElement('button');
@@ -31,6 +33,12 @@ editBtn.className = 'edit button';
 editBtn.appendChild(document.createTextNode('Edit expense'));
 li.appendChild(editBtn);
 itemList.appendChild(li);
+
+axios.post("https://crudcrud.com/api/4991432a81c643bd861ffceeb2977152/", obj)
+.then((response)=>{
+  console.log(response);
+}
+);
 }
 
 
